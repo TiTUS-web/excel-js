@@ -5,9 +5,7 @@ const CODES = {
 
 function createCell() {
   return `
-        <div class="data__cell" contenteditable>
-            B2
-        </div>
+        <div class="data__cell" contenteditable></div>
     `;
 }
 
@@ -19,12 +17,12 @@ function createCol(col) {
     `;
 }
 
-function createRow(content) {
+function createRow(index, content) {
   return `
         <div class="row">
-            <div class="row__info"></div>
+            <div class="row__info">${index ? index : ''}</div>
             <div class="row__data">${content}</div>
-        </div>
+        </div>  
     `;
 }
 
@@ -42,10 +40,15 @@ export function createTable(rowsCount = 15) {
     .map(createCol)
     .join('');
 
-  rows.push(createRow(cols));
+  rows.push(createRow(null, cols));
 
   for (let i = 0; i < rowsCount; i++) {
-    rows.push(createRow());
+    const cells = new Array(colsCount)
+      .fill('')
+      .map(createCell)
+      .join('');
+
+    rows.push(createRow(i + 1, cells));
   }
 
   return rows.join('');
