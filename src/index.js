@@ -12,7 +12,7 @@ const store = createStore(rootReducer, storage('excel-state'));
 
 store.subscribe((state) => {
   console.log(state);
-  storage('excel-state', JSON.stringify(state));
+  storage('excel-state', state);
 });
 
 const excel = new Excel('#app', {
