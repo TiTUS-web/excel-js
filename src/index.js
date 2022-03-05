@@ -6,9 +6,10 @@ import {Formula} from './components/formula/Formula';
 import {Table} from './components/table/Table';
 import {createStore} from '@core/createStore';
 import {rootReducer} from '@/redux/rootReducer';
+import {intialState} from '@/redux/initialState';
 import {storage} from '@core/utils';
 
-const store = createStore(rootReducer, storage('excel-state'));
+const store = createStore(rootReducer, intialState);
 
 store.subscribe((state) => {
   console.log(state);
