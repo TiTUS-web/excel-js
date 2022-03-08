@@ -1,7 +1,6 @@
 import {TABLE_RESIZE, CHANGE_TEXT, CHANGE_STYLES} from '@/redux/types';
 
 export function rootReducer(state, action) {
-  let prevState;
   let field;
   switch (action.type) {
     case TABLE_RESIZE:
