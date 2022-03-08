@@ -1,4 +1,5 @@
 import {$} from '@core/dom';
+import {defaultStyles} from '@/constants';
 import {ExcelComponent} from '@core/ExcelComponent';
 import {createTable} from '@/components/table/table.template';
 import {resizeHandler} from '@/components/table/table.resize';
@@ -42,12 +43,19 @@ export class Table extends ExcelComponent {
     });
 
     this.$on('formula:done', () => this.selection.current.focus());
+
+    this.$on('toolbar:applyStyle', (style) => {
+      this.selection.applyStyle(style);
+    });
   }
 
   selectCell($cell) {
     this.selection.select($cell);
     this.$emit('table:select', $cell);
-    this.$dispatch({type: 'Test'});
+    
+    const styles = $cell.getStyles(Object.keys(defaultStyles));
+
+    this.$dispatch(actions.changeStyles(styles));
   }
 
   async resizeTable(event) {
