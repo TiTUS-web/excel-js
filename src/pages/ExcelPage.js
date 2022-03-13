@@ -11,7 +11,7 @@ import {normalizeInitialState} from '@/redux/initialState';
 import {storage, debounce} from '@core/utils';
 
 function storageName(param) {
-  return `excel: ${param}`;
+  return `excel:${param}`;
 }
 
 export class ExcelPage extends Page {
